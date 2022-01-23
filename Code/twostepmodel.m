@@ -1,23 +1,25 @@
 function [ models1, models2, prediction_training, prediction_test, response, trainingstats, teststats, AUCs, var_sets, coeffs, ablstudies_results, cv_part ] = twostepmodel( drug )
 
+% Utilise a cross-validation framework with 10 folds
+nfolds = 10;
 
-models1 = cell( 10, 9 );
-models2 = cell( 10, 13 );
+models1 = cell( nfolds, 9 );
+models2 = cell( nfolds, 13 );
 
-prediction_training = cell( 10, 37 );
-prediction_test = cell( 10, 37 );
+prediction_training = cell( nfolds, 37 );
+prediction_test = cell( nfolds, 37 );
 
-response = cell( 10, 4 );
+response = cell( nfolds, 4 );
 
-trainingstats = cell( 10, 19 );
-teststats = cell( 10, 19 );
+trainingstats = cell( nfolds, 19 );
+teststats = cell( nfolds, 19 );
 
-AUCs = cell( 10, 2 );
+AUCs = cell( nfolds, 2 );
 
-var_sets = cell( 10, 7 );
-coeffs = cell( 10, 12 );
+var_sets = cell( nfolds, 7 );
+coeffs = cell( nfolds, 12 );
 
-ablstudies_results = cell( 10, 3 );
+ablstudies_results = cell( nfolds, 3 );
 
 
 %% 0. Load the input feature data und the response data of the GDSC data base
@@ -35,21 +37,24 @@ load( 'Response_AUC.mat', 'Response_AUC' );
 
 [ n1, ~ ] = size( GeneExpression ) ;
 
-cv_part = cvpartition( n1, 'kFold', 10 );
+cv_part = cvpartition( n1, 'kFold', nfolds );
 
 
-for j = 1:10
+for j = 1:nfolds
     
     trainingset = training( cv_part, j );
     testset = test( cv_part, j );
     
+    % Utilize the first 7 principal components
+    nPCs = 7;
+
     [ pc_coeff, score, ~ ] = pca( GeneExpression( trainingset, : ) );
-    PC_training = score( :, 1:7 );
+    PC_training = score( :, 1:nPCs );
     
-    % Project test gene expression data onto PC space
+    % Project the test gene expression data onto the PC space
     
     PC_test = mrdivide( GeneExpression( testset, : ), pc_coeff' );
-    PC_test = PC_test( :, 1:7 );
+    PC_test = PC_test( :, 1:nPCs );
     
     pathway_training = PathwayActivation( trainingset, : );
     pathway_test = PathwayActivation( testset, : );
@@ -121,7 +126,7 @@ for j = 1:10
     model( :, 6 ) = nmodel;
     
     
-    % Remove constant first-step models
+    % Store the indices of non-constant first-step models and remove the constant first-step models
     
     index = ones( 1, 6 );
     
@@ -140,9 +145,12 @@ for j = 1:10
     
     %% 4.1 Neural Network
     
+    % Use Bayesian regularisation backpropagation
     trainFcn = 'trainbr';
     
+    % Use five neurons in the hidden layer
     hiddenLayerSize = 5;
+
     model_nn = fitnet( hiddenLayerSize, trainFcn );
     
     model_nn.divideParam.trainRatio = 80/100;
@@ -158,9 +166,16 @@ for j = 1:10
     
     %% 4.2 Regularized linear regression models
     
+    % LASSO-regularised linear regression
     [ model_l, fitinfo_l ] = lasso( model, responseb_training );
-    [ model_en, fitinfo_en ] = lasso( model, responseb_training, 'Alpha', 0.1 ); % elastic net regularization
-    [ model_r, fitinfo_r ] = lasso( model, responseb_training, 'Alpha', 10^(-3) ); % approximation of ridge regularization
+
+    % Elastic net-regularised linear regression
+    ratio_LASSO_ridge = 0.1;
+    [ model_en, fitinfo_en ] = lasso( model, responseb_training, 'Alpha', ratio_LASSO_ridge ); 
+
+    % Approximation of ridge-regularised linear regression
+    ratio_LASSO_ridge = 10^(-3);
+    [ model_r, fitinfo_r ] = lasso( model, responseb_training, 'Alpha', ratio_LASSO_ridge ); 
     
     
     [ ~, ind ] = min( fitinfo_l.MSE );
@@ -197,9 +212,27 @@ for j = 1:10
     
     %% 4.3 Regularized logistic regression models
     
-    [ model_log1, fitinfo_log1 ] = lassoglm( model, responseb_training, 'binomial', 'NumLambda', 100, 'CV', 5 ); % lasso
-    [ model_log2, fitinfo_log2 ] = lassoglm( model, responseb_training, 'binomial', 'NumLambda', 100, 'CV', 5, 'Alpha', 0.5 ); % EN
-    [ model_log3, fitinfo_log3 ] = lassoglm( model, responseb_training, 'binomial', 'NumLambda', 100, 'CV', 5, 'Alpha', 10^(-3) ); % ridge
+    % LASSO-regularised logistic regression via a generalised linear model
+
+    % Use 5 cross-validation folds
+    nCV = 5;
+    % Use 100 regularisation coefficients
+    num_regcoeffs = 100;
+
+    [ model_log1, fitinfo_log1 ] = lassoglm( model, responseb_training, 'binomial', 'NumLambda', num_regcoeffs, 'CV', nCV ); 
+
+    % Elastic net-regularised logistic regression via a generalised linear model
+    
+    % The LASSO- and the ridge-regularisation term are assigned the same weight
+    ratio_LASSO_ridge = 0.5;
+
+    [ model_log2, fitinfo_log2 ] = lassoglm( model, responseb_training, 'binomial', 'NumLambda', num_regcoeffs, 'CV', nCV, 'Alpha', ratio_LASSO_ridge ); 
+
+    % Ridge-regularised logistic regression via a generalised linear model
+
+    ratio_LASSO_ridge = 10^(-3);
+
+    [ model_log3, fitinfo_log3 ] = lassoglm( model, responseb_training, 'binomial', 'NumLambda', num_regcoeffs, 'CV', nCV, 'Alpha', ratio_LASSO_ridge ); 
     
     
     index_log1 = fitinfo_log1.Index1SE;
@@ -276,11 +309,19 @@ for j = 1:10
     
     %% 4.6 Decision Tree Ensembles and Random Forests
     
+    % To avoid overfitting, use default decision tree learner templates with only one decision split
     treeStump = templateTree( 'MaxNumSplits', 1 );
     
-    model_treebag = fitrensemble( model, responseb_training, 'Method', 'Bag', 'Learners', treeStump );
-    model_treeboost = fitrensemble( model, responseb_training, 'Method', 'LSBoost','Learners', treeStump );
-    model_rforest = TreeBagger( 50, model, responseb_training, 'Method', 'Regression', 'MinLeafSize', 20, 'OOBPredictorImportance','on', 'PredictorSelection', 'curvature' );
+    model_treebag = fitrensemble( model, responseb_training, 'Method', 'Bag', 'Learners', treeStump ); 
+    model_treeboost = fitrensemble( model, responseb_training, 'Method', 'LSBoost','Learners', treeStump ); 
+    
+    % To avoid overfitting, tree leafs are required to contain at least 20 observations
+    num_obs_per_leaf = 20;
+
+    % Compute 50 trees
+    num_trees = 50;
+
+    model_rforest = TreeBagger( num_trees, model, responseb_training, 'Method', 'Regression', 'MinLeafSize', num_obs_per_leaf, 'OOBPredictorImportance','on', 'PredictorSelection', 'curvature' );
     
     
     y_treebag = predict( model_treebag, model );
@@ -350,7 +391,7 @@ for j = 1:10
     [ model_test_nbayes, teststats_nbayes ] = test_model_nbayes( model_nbayes, model_testing_red, responseb_test );
     
     
-    %% Decision Tree Ensemblesand Random Forests
+    %% 5.6 Decision Tree Ensembles and Random Forests
     
     [ model_test_treebag, modelb_test_treebag, teststats_treebag, auc_test_treebag ] = test_model_dectrees( model_treebag, model_testing, responseb_test, cutoff_treebag, normfunction_treebag );
     [ model_test_treeboost, modelb_test_treeboost, teststats_treeboost, auc_test_treeboost ] = test_model_dectrees( model_treeboost, model_testing, responseb_test, cutoff_treeboost, normfunction_treeboost );

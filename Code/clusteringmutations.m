@@ -3,7 +3,14 @@ function [ clusters, set, set_large ] = clusteringmutations( data, relevantvaria
 
 %% Select statistically significant features
 
-set1 = find( relevantvariables <= 0.05 );
+% Use a level of significance of 0.05
+alpha = 0.05;
+% Use no more than 15 significant mutation features for clustering
+max_num_features = 15;
+% Compute no more than 32 non-empty mutation-based clusters of cell lines
+max_num_clusters = 32;
+
+set1 = find( relevantvariables <= alpha );
 n1 = size( data, 1 );
 
 set_large = set1;
@@ -40,12 +47,12 @@ end
 
 set1 = set2;
 
-if length( set1 ) > 15
+if length( set1 ) > max_num_features
     
     % Define a new set by ordering the features with respect to relevance
     
     [ ~, ind ] = sort( relevantvariables, 'ascend' );
-    set1 = ind( 1:15 );
+    set1 = ind( 1:max_num_features );
     
     % Remove redundant features
     
@@ -127,11 +134,11 @@ end
 
 mcl = max( clusters );
 
-if mcl > 32
+if mcl > max_num_clusters
     
     % Repeat the clustering procedure and remove features in a stepwise manner, starting with the least significant ones
     
-    temp1 = min( sum( relevantvariables <= 0.05 ), 15 );
+    temp1 = min( sum( relevantvariables <= alpha ), max_num_features );
     [ ~, ind ] = sort( relevantvariables, 'ascend' );
     
     set1 = ind( 1:temp1 );
@@ -170,7 +177,7 @@ if mcl > 32
     set1 = set2; 
     temp1 = length( set1 );
     
-    while max( clusters ) > 32
+    while max( clusters ) > max_num_clusters
         
         temp1 = temp1 - 1;
         set1 = set1( 1:temp1 );
@@ -222,7 +229,7 @@ if mcl > 32
     
     if max( clusters ) == mcl
         
-        set = find( relevantvariables <= 0.05 );
+        set = find( relevantvariables <= alpha );
         
         set2 = set;
         

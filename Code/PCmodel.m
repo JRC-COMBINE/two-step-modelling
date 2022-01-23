@@ -7,14 +7,15 @@ function [ modelfun6, model6, model6b, cutoff6, modelstats6, auc6 ] = PCmodel( r
 modelfun6 = fitlm( PC, response, 'linear', 'RobustOpts', 'on', 'Intercept', false );
 model6 = modelfun6.Fitted;
 
-% Find the optimal cutoff
+% Find the best classification cutoff out of 100 potential candidates 
+n_cutoff = 100;
 
-modelstats6 = zeros( 5, 101 );
+modelstats6 = zeros( 5, n_cutoff + 1 );
 index = isnan( model6 );
 
-for i = 1:101
+for i = 1:n_cutoff + 1
     
-    cutoff6 = ( i - 1 )/100;
+    cutoff6 = ( i - 1 )/n_cutoff;
     
     model6b = model6 >= cutoff6;
     model6b = +model6b;
@@ -32,7 +33,7 @@ end
 
 [ ~, i ] = max( modelstats6( 1, : ) );
 
-cutoff6 = ( i - 1 )/100;
+cutoff6 = ( i - 1 )/n_cutoff;
 
 model6b = model6 >= cutoff6;
 model6b = +model6b;

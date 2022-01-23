@@ -1,11 +1,11 @@
 function [ model_training, modelb, auc, modelstats, cutoff, normfunction ] = model_postprocess( model_training, response_training )
 
 
-%% 1. Normalize the model
+%% 1. Normalise the model
 
 if max( model_training )
 
-    normfunction = @(x) ( x - nanmin( model_training ) )./nanmax( model_training );
+    normfunction = @(x) ( x - nanmin( model_training ) )./nanmax( model_training ); %#ok<*NANMAX,*NANMIN> 
     model_training = ( model_training - nanmin( model_training ) )./ nanmax( model_training );
     
 else
@@ -16,14 +16,16 @@ else
 end
 
 
-%% 2. Binarize the results and assess model performance
+%% 2. % Find the best classification cutoff out of 100 potential candidates and assess the predictive performance
 
-modelstats = zeros( 1, 101 );
+n_cutoff = 100;
+
+modelstats = zeros( 1, n_cutoff + 1 );
 index = isnan( model_training );
 
 for i = 1:101
     
-    cutoff = ( i - 1 ) / 100;
+    cutoff = ( i - 1 ) / n_cutoff;
     
     modelb = model_training >= cutoff;
     modelb = +modelb;
@@ -37,7 +39,7 @@ end
 
 [ ~, i ] = max( modelstats( 1, : ) );
 
-cutoff = ( i - 1 )/100;
+cutoff = ( i - 1 )/n_cutoff;
 
 modelb = model_training >= cutoff;
 modelb = +modelb;

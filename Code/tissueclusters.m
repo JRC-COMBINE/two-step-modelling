@@ -1,9 +1,12 @@
 function [ clusters4, set4 ] = tissueclusters( tissuedata_training, tissuedata, response )
 
 
-% Remove all tissues with less than ten cell lines 
+% Only consider tissue types containing at least ten cell lines 
+min_num = 10;
+% Utilise a level of significance of 0.05
+alpha = 0.05;
 
-index = find( sum( tissuedata_training, 1 ) >= 10 );
+index = find( sum( tissuedata_training, 1 ) >= min_num );
 
 
 % Check for tissues that change responsiveness  
@@ -30,7 +33,7 @@ relevanttissues = relevanttissues .* testcorrection;
 
 % Select statistically significant tissues
 
-set4 = index(  relevanttissues <= 0.05  );
+set4 = index(  relevanttissues <= alpha  );
 
 
 % Save the resulting clusters of tissues

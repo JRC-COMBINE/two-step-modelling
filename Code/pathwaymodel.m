@@ -7,14 +7,16 @@ function [ modelfun5, model5, model5b, cutoff5, modelstats5, auc5 ] = pathwaymod
 modelfun5 = fitlm( pathways, response, 'linear', 'RobustOpts', 'on', 'Intercept', false );
 model5 = modelfun5.Fitted;
 
-% Find the optimal cutoff
+% Find the best classification cutoff out of 100 potential candidates 
 
-modelstats5 = zeros( 5, 101 );
+n_cutoff = 100;
+
+modelstats5 = zeros( 5, n_cutoff + 1 );
 index = isnan( model5 );
 
-for i = 1:101
+for i = 1:n_cutoff + 1
     
-    cutoff5 = ( i - 1 )/100;
+    cutoff5 = ( i - 1 )/n_cutoff;
     
     model5b = model5 >= cutoff5;
     model5b = +model5b;
@@ -32,7 +34,7 @@ end
 
 [ ~, i ] = max( modelstats5( 1, : ) );
 
-cutoff5 = ( i - 1 )/100;
+cutoff5 = ( i - 1 )/n_cutoff;
 
 model5b = model5 >= cutoff5;
 model5b = +model5b;

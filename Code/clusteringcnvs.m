@@ -3,7 +3,12 @@ function [ clusters, set, set_large ] = clusteringcnvs( data, relevantvariables,
 
 %% Select statistically significant features
 
-set1 = find( relevantvariables <= 0.05 );
+% Use a level of significance of 0.05
+alpha = 0.05;
+% Compute no more than 32 non-empty CNV-based clusters of cell lines
+max_num_clusters = 32;
+
+set1 = find( relevantvariables <= alpha );
 n1 = size( data, 1 );
 
 set_large = index1( set1 );
@@ -87,11 +92,11 @@ end
 
 mcl = max( clusters );
 
-if mcl > 32
+if mcl > max_num_clusters
     
     % Repeat the clustering procedure and remove features in a stepwise manner, starting with the least significant ones
     
-    temp1 = sum( relevantvariables <= 0.05 );
+    temp1 = sum( relevantvariables <= alpha );
     [ ~, ind ] = sort( relevantvariables, 'ascend' );
     
     set1 = ind( 1:temp1 );
@@ -130,7 +135,7 @@ if mcl > 32
     set1 = set2;
     temp1 = length( set1 );
     
-    while max( clusters ) > 32
+    while max( clusters ) > max_num_clusters
         
         temp1 = temp1 - 1;
         set1 = set1( 1:temp1 );
@@ -182,7 +187,7 @@ if mcl > 32
     
     if max( clusters ) == mcl
         
-        set = find( relevantvariables <= 0.05 );
+        set = find( relevantvariables <= alpha );
         
         set2 = set;
         
@@ -224,48 +229,6 @@ else
     set = index1( set1 );
     
 end
-
-
-% %% If modifying the set of relevant features didn't yield any changes, keep the original set
-% 
-% if max( clusters ) == mcl
-%     
-%     set = find( relevantvariables <= 0.05 );
-%     
-%     set2 = set;
-%     
-%     count = 2;
-%     
-%     while count <= length( set2 )
-%         
-%         temp = abs( data( :, index1( set2( count ) ) ) );
-%         
-%         for j = 1:count-1
-%             
-%             temp2 = abs( data( :, index1( set2( j ) ) ) );
-%             
-%             if isequal( temp, temp2 )
-%                 
-%                 set2 = set2( set2 ~= set2( count ) );
-%                 count = count - 1;
-%                 
-%                 break;
-%                 
-%             end
-%             
-%         end
-%         
-%         count = count + 1;
-%         
-%     end
-%     
-%     set = index1( set2 );
-%     
-% else
-%     
-%     set = index1( set1 );
-%     
-% end
 
 
 end

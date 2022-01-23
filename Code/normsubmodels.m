@@ -1,8 +1,8 @@
 function [ submodel, normfunction ] = normsubmodels( submodel )
 
-% Normalize the outputs of the models on continuous data
+% Normalise the outputs of the models on continuous data
 
-if ~isnan( nanmin( submodel ) ) && ~isnan( nanmax( submodel ) )
+if ~isnan( nanmin( submodel ) ) && ~isnan( nanmax( submodel ) ) %#ok<*NANMAX,*NANMIN> 
     
     if nanmax( submodel ) - nanmin( submodel ) ~= 0 
        

@@ -1,15 +1,16 @@
 function [ clusters2, set2, set2_large, clusterinfo2 ] = cnvclusters( cnvdata_training, cnvdata, response )
 
 
-% Remove all genes with not enough cell lines for at least two of the categories
+% Remove all CNVs with not enough cell lines for at least two of the categories (deletion, regular, amplification)
+min_num = 15;
 
 index = zeros( size( cnvdata_training, 2 ), 1 );
 
 for j = 1:size( cnvdata_training, 2 )
     
-    temp_del = sum( cnvdata_training( :, j ) == -1 ) >= 15;
-    temp_norm = sum( cnvdata_training( :, j ) == 0 ) >= 15;
-    temp_amp = sum( cnvdata_training( :, j ) == 1 ) >= 15;
+    temp_del = sum( cnvdata_training( :, j ) == -1 ) >= min_num;
+    temp_norm = sum( cnvdata_training( :, j ) == 0 ) >= min_num;
+    temp_amp = sum( cnvdata_training( :, j ) == 1 ) >= min_num;
     
     index( j, 1 ) = temp_del * temp_norm || temp_norm * temp_amp || temp_del * temp_amp; %#ok<BDLOG>
     

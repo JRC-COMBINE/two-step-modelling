@@ -1,14 +1,15 @@
 function [ clusters3, set3, set3_large, clusterinfo3 ] = methclusters( methdata_training, methdata, response )
 
 
-% Remove all genes with not enough cell lines in any of the categories
+% Only consider hypermethylations that are present and absent in at least 15 cell lines, respectively
+min_num = 15;
 
 index = zeros( size( methdata_training, 2 ), 1 );
 
 for j = 1:size( methdata_training, 2 )
     
-    hypermethylations = sum( methdata_training( :, j ) == 1 ) >= 15;
-    normal = sum( methdata_training( :, j ) == 0 ) >= 15;
+    hypermethylations = sum( methdata_training( :, j ) == 1 ) >= min_num;
+    normal = sum( methdata_training( :, j ) == 0 ) >= min_num;
     
     index( j, 1 ) = normal * hypermethylations;
     

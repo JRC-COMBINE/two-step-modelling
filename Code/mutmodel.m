@@ -10,7 +10,7 @@ clustmean1 = zeros( n, 1 );
 
 for i = 1:n
     
-    clustmean1( i, 1 ) = nanmean( response_training( clustdata_training == i ) );
+    clustmean1( i, 1 ) = nanmean( response_training( clustdata_training == i ) ); %#ok<NANMEAN> 
     
     if isnan( clustmean1( i, 1 ) )
        
@@ -28,14 +28,16 @@ model1 = clustmean1( clustdata_training, 1 );
 modelfun1 = @(x) clustmean1( x, 1 );
 
 
-% Binarize results
+% Find the best classification cutoff out of 100 potential candidates 
 
-modelstats1 = zeros( 1, 101 );
+n_cutoff = 100;
+
+modelstats1 = zeros( 1, n_cutoff + 1 );
 index = isnan( model1 );
 
-for i=1:101
+for i = 1:n_cutoff + 1
     
-    cutoff1 = ( i - 1 ) / 100;
+    cutoff1 = ( i - 1 ) / n_cutoff;
 
     model1b = model1 >= cutoff1;
     model1b = +model1b;
@@ -50,7 +52,7 @@ end
 
 [ ~, i ] = max( modelstats1( 1, : ) );
 
-cutoff1 = ( i - 1 )/100;
+cutoff1 = ( i - 1 )/n_cutoff;
 
 model1b = model1 >= cutoff1;
 model1b = +model1b;

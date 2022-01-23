@@ -1,5 +1,7 @@
 function [ amodels, trainingstats, teststats ] = ablationstudies( model, model_testing, responseb_training, responseb_test, index, type )
 
+% Compute up to 41 ablation models by removing all possible combinations of 1-3 input features of the second-step models
+% The settings and parameters of the second-step algorithms used for fitting remain otherwise unchanged
 
 combi2 = nchoosek( 1:6, 2 );
 combi3 = nchoosek( 1:6, 3 );
@@ -32,6 +34,12 @@ if type == 1
     amodels = cell( 1, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    % Use Bayesian regularisation backpropagation
+    trainFcn = 'trainbr';
+
+    % Use five neurons in the hidden layer
+    hiddenLayerSize = 5;
     
     for k = 1:41
         
@@ -47,7 +55,7 @@ if type == 1
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
             
-            anet = fitnet( 5, 'trainbr' );
+            anet = fitnet( hiddenLayerSize, trainFcn );
             
             % Setup Division of Data for Training, Validation, Testing
             
@@ -144,6 +152,8 @@ if type == 3
     amodels = cell( 2, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    ratio_LASSO_ridge = 0.1;
     
     for k = 1:41
         
@@ -159,7 +169,7 @@ if type == 3
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
             
-            [ model_training, fitinfo ] = lasso( amodel, responseb_training, 'Alpha', 0.1 );
+            [ model_training, fitinfo ] = lasso( amodel, responseb_training, 'Alpha', ratio_LASSO_ridge );
             
             [ ~, ind ] = min( fitinfo.MSE );
             coef = model_training( :, ind );
@@ -197,6 +207,8 @@ if type == 4
     amodels = cell( 2, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    ratio_LASSO_ridge = 10^(-3);
     
     for k = 1:41
         
@@ -212,7 +224,7 @@ if type == 4
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
             
-            [ model_training, fitinfo ] = lasso( amodel, responseb_training, 'Alpha', 10^(-3) );
+            [ model_training, fitinfo ] = lasso( amodel, responseb_training, 'Alpha', ratio_LASSO_ridge );
             
             [ ~, ind ] = min( fitinfo.MSE );
             coef = model_training( :, ind );
@@ -250,6 +262,11 @@ if type == 5
     amodels = cell( 2, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    % Use 5 cross-validation folds
+    nCV = 5;
+    % Use 100 regularisation coefficients
+    num_regcoeffs = 100;
     
     for k = 1:41
         
@@ -265,7 +282,7 @@ if type == 5
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
             
-            [ model_training, fitinfo ] = lassoglm( amodel, responseb_training, 'binomial', 'NumLambda', 100, 'CV', 5 );
+            [ model_training, fitinfo ] = lassoglm( amodel, responseb_training, 'binomial', 'NumLambda', num_regcoeffs, 'CV', nCV );
             
             constant = fitinfo.Intercept( fitinfo.Index1SE );
             coeffs = model_training( :, fitinfo.Index1SE );
@@ -302,6 +319,13 @@ if type == 6
     amodels = cell( 2, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    % Use 5 cross-validation folds
+    nCV = 5;
+    % Use 100 regularisation coefficients
+    num_regcoeffs = 100;
+    % The LASSO- and the ridge-regularisation term are assigned the same weight
+    ratio_LASSO_ridge = 0.5;
     
     for k = 1:41
         
@@ -317,7 +341,7 @@ if type == 6
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
             
-            [ model_training, fitinfo ] = lassoglm( amodel, responseb_training, 'binomial', 'NumLambda', 100, 'CV', 5, 'Alpha', 0.5 );
+            [ model_training, fitinfo ] = lassoglm( amodel, responseb_training, 'binomial', 'NumLambda', num_regcoeffs, 'CV', nCV, 'Alpha', ratio_LASSO_ridge );
             
             constant = fitinfo.Intercept( fitinfo.Index1SE );
             coeffs = model_training( :, fitinfo.Index1SE );
@@ -354,6 +378,13 @@ if type == 7
     amodels = cell( 2, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    % Use 5 cross-validation folds
+    nCV = 5;
+    % Use 100 regularisation coefficients
+    num_regcoeffs = 100;
+    % The LASSO- and the ridge-regularisation term are assigned the same weight
+    ratio_LASSO_ridge = 10^(-3);
     
     for k = 1:41
         
@@ -369,7 +400,7 @@ if type == 7
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
             
-            [ model_training, fitinfo ] = lassoglm( amodel, responseb_training, 'binomial', 'NumLambda', 100, 'CV', 5, 'Alpha', 10^(-3) );
+            [ model_training, fitinfo ] = lassoglm( amodel, responseb_training, 'binomial', 'NumLambda', num_regcoeffs, 'CV', nCV, 'Alpha', ratio_LASSO_ridge );
             
             constant = fitinfo.Intercept( fitinfo.Index1SE );
             coeffs = model_training( :, fitinfo.Index1SE );
@@ -542,6 +573,9 @@ if type == 11
     amodels = cell( 1, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    % To avoid overfitting, use default decision tree learner templates with only one decision split
+    treeStump = templateTree( 'MaxNumSplits', 1 );
     
     for k = 1:41
         
@@ -556,8 +590,6 @@ if type == 11
             end
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
-            
-            treeStump = templateTree( 'MaxNumSplits', 1 );
     
             model_training = fitrensemble( amodel, responseb_training, 'Method', 'Bag', 'Learners', treeStump );
             
@@ -590,6 +622,9 @@ if type == 12
     amodels = cell( 1, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    % To avoid overfitting, use default decision tree learner templates with only one decision split
+    treeStump = templateTree( 'MaxNumSplits', 1 );
     
     for k = 1:41
         
@@ -604,8 +639,6 @@ if type == 12
             end
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
-            
-            treeStump = templateTree( 'MaxNumSplits', 1 );
     
             model_training = fitrensemble( amodel, responseb_training, 'Method', 'LSBoost', 'Learners', treeStump );
             
@@ -638,6 +671,12 @@ if type == 13
     amodels = cell( 1, 41 );
     trainingstats = NaN( 2, 41 );
     teststats = NaN( 2, 41 );
+
+    % To avoid overfitting, tree leafs are required to contain at least 20 observations
+    num_obs_per_leaf = 20;
+
+    % Compute 50 trees
+    num_trees = 50;
     
     for k = 1:41
         
@@ -653,7 +692,7 @@ if type == 13
             
             amodel = model( :, setdiff( 1:size( model, 2 ), remove ) );
             
-            model_training = TreeBagger( 50, amodel, responseb_training, 'Method', 'Regression', 'MinLeafSize', 20, 'OOBPredictorImportance','on', 'PredictorSelection', 'curvature' );
+            model_training = TreeBagger( num_trees, amodel, responseb_training, 'Method', 'Regression', 'MinLeafSize', num_obs_per_leaf, 'OOBPredictorImportance','on', 'PredictorSelection', 'curvature' );
             
             y_rforest = predict( model_training, amodel );
             

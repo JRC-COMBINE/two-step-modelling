@@ -1,18 +1,20 @@
 function [ clusters1, set1, set1_large, clusterinfo1 ] = mutclusters( mutdata_training, mutdata, response )
 
 
-% Check for single mutations that change responsiveness 
+% Check for single mutations that change cellular responsiveness 
 
 [ ~, n2 ] = size( mutdata ); 
-
 relevantmutations = nan( 1, n2 );
+
+% Only consider mutations that are present and absent in at least 15 cell lines, respectively
+min_num = 15;
 
 for i = 1:n2
     
     mut = response( mutdata_training( :, i ) == 1 );
     nonmut = response( mutdata_training( :, i ) == 0 );
     
-    if min( length( mut ),length( nonmut ) ) >= 15
+    if min( length( mut ),length( nonmut ) ) >= min_num
         
         [ ~, p ] = ttest2( mut, nonmut );
         relevantmutations( 1, i ) = p;
