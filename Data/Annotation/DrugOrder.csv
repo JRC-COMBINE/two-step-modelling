@@ -1,0 +1,265 @@
+"Erlotinib","","EGFR","EGFR signaling",3
+"Rapamycin","AY-22989,Sirolimus,WY-090217","mTOR","TOR signaling",10
+"Sunitinib","Sutent","PDGFRA, PDGFRB, KDR, KIT, FLT3","RTK signaling",9
+"PHA-665752","","MET","RTK signaling",9
+"MG-132","zLLL","Proteasome","other",20
+"Paclitaxel","BMS-181339-01","Beta subunit of Tubulin","cytoskeleton",17
+"Cyclopamine","11-deoxojervine","SMO","other",20
+"AZ628","","BRAF","ERK MAPK signaling",4
+"Sorafenib","BAY-439006, Nexavar","PDGFRA, PDGFRB, KDR, KIT, FLT3","RTK signaling",9
+"VX-680","MK-045,MK-0457,VX-68","AURKA, AURKB, AURKC, FLT3, ABL1, JAK2","mitosis",19
+"Imatinib","Gleevec,STI-571","ABL, KIT, PDGFR","ABL signaling",1
+"TAE684","NVP-TAE684","ALK","RTK signaling",9
+"Crizotinib","Xalkori,PF2341066","MET, ALK","RTK signaling",9
+"Saracatinib","AZD-0530,KIN001-045","SRC, ABL1","ABL signaling",1
+"S-Trityl-L-cysteine","NSC 83265","KIF11","mitosis",19
+"Z-LLNle-CHO","Z-L-Norleucine-CHO","gamma-secretase","other",20
+"Dasatinib","KIN001-005","ABL, SRC, KIT, PDGFR","ABL signaling",1
+"GNF-2","KIN001-013 (GNF-2 / 3-(6-(4-(trifluoromethoxy)phenylamino)pyrimidin-4-yl)benzamide)","ABL (T315I)","ABL signaling",1
+"CGP-60474","KIN001-019","CDK1,CDK2,CDK5,CDK7,CDK9","cell cycle",13
+"CGP-082996","CINK4,KIN001-021","CDK4","cell cycle",13
+"A-770041","KIN001-111","SRC family","other",20
+"WH-4-023","KIN001-112","SRC family, ABL","ABL signaling",1
+"WZ-1-84","KIN001-123","BMX","other",20
+"BI-2536","KIN001-124","PLK1, PLK2, PLK3","mitosis",19
+"BMS-536924","KIN001-126","IGF1R","IGFR signaling",6
+"BMS-509744","KIN001-127","ITK","other",20
+"CMK","KIN001-128","RSK","ERK MAPK signaling",4
+"Pyrimethamine","","Dihydrofolate reductase (DHFR)","DNA replication",2
+"JW-7-52-1","","mTOR","TOR signaling",10
+"A-443654","KIN001-139","AKT1, AKT2, AKT3","PI3K signaling",8
+"GW843682X","KIN001-134","PLK1","mitosis",19
+"MS-275","MS275","HDAC","chromain  histone acetylation",14
+"Parthenolide","","NFKB1","other",20
+"KIN001-135","KIN001-135","IKKE","other",20
+"TGX221","","PI3K beta","PI3K signaling",8
+"Bortezomib","LDP-341,PS-341","Proteasome","other",20
+"XMD8-85","XMD8-85","ERK5 (MK07)","other",20
+"Roscovitine","Seliciclib","CDK family","cell cycle",13
+"Salubrinal","3-Phenyl-N-[2,2,2-trichloro-1-[[(8-quinolinylamino)thioxomethyl]amino]ethyl]-2-propenamide","GADD34-PP1C phosphatase","other",20
+"Lapatinib","Tykerb, Tyverb","EGFR, ERBB2","EGFR signaling",3
+"GSK269962A","KIN001-155","ROCK1,ROCK2","cytoskeleton",17
+"Doxorubicin","Doxil,Rubex","DNA intercalating","DNA replication",2
+"Etoposide","","TOP2","DNA replication",2
+"Gemcitabine","Gemzar, LY-188011","DNA replication","DNA replication",2
+"Mitomycin C","Mytozytrex,NSC-26980","DNA crosslinker","DNA replication",2
+"Vinorelbine","","Microtubules","cytoskeleton",17
+"NSC-87877","","SHP-1 (PTPN6), SHP-2 (PTPN11)","other",20
+"Bicalutamide","ICI-176334","Androgen receptor (ANDR)","other",20
+"QS11","QS11","ARFGAP","other",20
+"CP466722","[2-(6,7-dimethoxyquinazolin-4-yl)-5-(pyridin-2-yl)-2H-1,2,4-triazol-3-amine]","ATM","Genome integrity",5
+"Midostaurin","PKC 412","KIT","RTK signaling",9
+"CHIR-99021","CT 99021","GSK3B","WNT signaling",11
+"AP-24534","KIN001-192","ABL","ABL signaling",1
+"AZD6482","KIN001-193","PI3K beta (P3C2B)","PI3K signaling",8
+"JNK-9L","KIN001-204","JNK, CDK9","JNK and p38 signaling",7
+"PF-562271","KIN001-205","FAK","cytoskeleton",17
+"HG-6-64-1","KIN001-206","BRAFV600E, TAK, MAP4K5","ERK MAPK signaling",4
+"JQ1","JQ1","BRD2, BRD3, BRD4","chromatin  other",16
+"JQ12","JQ12","HDAC","chromain  histone acetylation",14
+"DMOG","Dimethyloxalylglcine","Prolyl-4-Hydroxylase","other",20
+"FTI-277","","Farnesyl-transferase (FNTA)","other",20
+"OSU-03012","AR-12","PDK1 (PDPK1)","PI3K signaling",8
+"Shikonin","Shikonin","unknown","other",20
+"AKT inhibitor VIII","","AKT1, AKT2, AKT3","PI3K signaling",8
+"Embelin","","XIAP","apoptosis regulation",12
+"FH535","FH535","unknown","other",20
+"PAC-1","PAC-1","CASP3 agonist","apoptosis regulation",12
+"IPA-3","IPA-3","PAK","cytoskeleton",17
+"GSK-650394","","SGK3","other",20
+"BAY 61-3606","","SYK","other",20
+"5-Fluorouracil","5-FU","DNA antimetabolite","DNA replication",2
+"Thapsigargin","","ATPase, Ca++ transporting, cardiac muscle, slow twitch 2","other",20
+"Obatoclax Mesylate","","BCL-2, BCL-XL, MCL-1","apoptosis regulation",12
+"BMS-754807","","IGF1R","IGFR signaling",6
+"Lisitinib","OSI-906","IGF1R","IGFR signaling",6
+"Bexarotene","LG-100069,LGD-1069","Retinioic acid X family agonist","other",20
+"Bleomycin","","DNA damage","DNA replication",2
+"LFM-A13","DDE-28","BTK","other",20
+"GW-2580","GW-2580","cFMS","RTK signaling",9
+"AUY922","VER-52296,NVP-AUY922","HSP90","other",20
+"Phenformin","Phenformin","","metabolism",18
+"Bryostatin 1","Bryostatin 1","PRKC","other",20
+"Pazopanib","GW786034","VEGFR, PDGFRA, PDGFRB, KIT","RTK signaling",9
+"LAQ824","Dacinostat, NVP-LAQ824","HDAC","chromain  histone acetylation",14
+"Epothilone B","GNF-PF-193","Microtubules","cytoskeleton",17
+"GSK1904529A","GSK1904529A","IGF1R","IGFR signaling",6
+"BMS345541","BMS345541","IKBKB","other",20
+"Tipifarnib","","Farnesyl-transferase (FNTA)","other",20
+"BMS-708163","Avagacestat","gamma-secretase","other",20
+"Ruxolitinib","INCB-18424","JAK1, JAK2, TYK2","other",20
+"AS601245","AS601245","JNK","JNK and p38 signaling",7
+"Ispinesib Mesylate","SB-715992","KIF11","mitosis",19
+"TL-2-105","","CRAF","ERK MAPK signaling",4
+"AT-7519","","CDK9","cell cycle",13
+"TAK-715","KIN001-201","p38a","JNK and p38 signaling",7
+"BX-912","KIN001-175","PDK1 (PDPK1)","PI3K signaling",8
+"ZSTK474","KIN001-167","PI3K","PI3K signaling",8
+"AS605240","KIN001-173","PI3K gamma","PI3K signaling",8
+"Genentech Cpd 10","","AURKA, AURKB","mitosis",19
+"GSK1070916","","AURKB","mitosis",19
+"KIN001-102","","AKT1","PI3K signaling",8
+"LY317615","Enzastaurin","PKCbeta","other",20
+"GSK429286A","","ROCK2","cytoskeleton",17
+"FMK","KIN001-242","RSK","ERK MAPK signaling",4
+"QL-XII-47","","BTK, BMX","other",20
+"CAL-101","","PI3K delta","PI3K signaling",8
+"UNC0638","","G9a(EHMT2), GLP(EHMT1)","chromatin  histone methylation",15
+"XL-184","Cabozantinib","VEGFR, MET, RET, KIT, FLT1, FLT3, FLT4, TIE2,AXL","RTK signaling",9
+"WZ3105","","CLK2, CNSK1E, FLT3, ULK1","other",20
+"XMD14-99","","EPHB3, CAMK1","RTK signaling",9
+"AC220","Quizartinib","FLT3","RTK signaling",9
+"CP724714","","ERBB2","EGFR signaling",3
+"JW-7-24-1","","LCK","other",20
+"NPK76-II-72-1","","PLK3","mitosis",19
+"STF-62247","","Autophagy","other",20
+"NG-25","","TAK","other",20
+"TL-1-85","","TAK","other",20
+"VX-11e","","ERK","ERK MAPK signaling",4
+"FR-180204","","ERK","ERK MAPK signaling",4
+"Tubastatin A","","HDAC6","chromain  histone acetylation",14
+"Zibotentan","Zibotentan","Endothelin A Receptor","other",20
+"YM155","Sepantronium bromide","BIRC5 (Survivin)","apoptosis regulation",12
+"NSC-207895","XI-006","MDMX","p53 pathway",21
+"VNLG/124","4-(Butanoyloxymethyl)phenyl-(2E,4E,6E,8E)-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-enyl)nona-2,4,6,8-tetraenoate","HDAC,RAR","chromain  histone acetylation",14
+"AR-42","HDAC-42","HDAC","chromain  histone acetylation",14
+"CUDC-101","","HDAC, EGFR","chromain  histone acetylation",14
+"Belinostat","PXD101","HDAC","chromain  histone acetylation",14
+"I-BET-762","GSK525762A","BRD2, BRD3, BRD4","chromatin  other",16
+"CAY10603","","HDAC6","chromain  histone acetylation",14
+"Linifanib","ABT-869","RTK","RTK signaling",9
+"BIX02189","","MEK5","other",20
+"CH5424802","","ALK","RTK signaling",9
+"EKB-569","Pelitinib","EGFR","EGFR signaling",3
+"GSK2126458","EX-8678","PI3K, mTOR","PI3K signaling",8
+"KIN001-236","","TIE2","other",20
+"KIN001-244","","PDK1 (PDPK1)","PI3K signaling",8
+"KIN001-055","WHI-P97, AC1L1GQE","JAK3, MNK1","other",20
+"KIN001-260","Bayer IKKb inhibitor","IKK","other",20
+"KIN001-266","","TPL2,COT(M3K8)","other",20
+"Masitinib","AB1010","KIT","RTK signaling",9
+"MP470","","PDGFR","RTK signaling",9
+"MPS-1-IN-1","","MPS1","mitosis",19
+"BHG712","NVP-BHG712","EPHB4","RTK signaling",9
+"OSI-930","","KIT, VEGFR, PDGFR","RTK signaling",9
+"OSI-027","A-1065","mTORC1/2","TOR signaling",10
+"CX-5461","","RNA Pol I","other",20
+"PHA-793887","","CDK-pan","cell cycle",13
+"PI-103","","PI3K alpha,DNAPK","PI3K signaling",8
+"PIK-93","","PI4K,PI3K","PI3K signaling",8
+"SB52334","","ALK5","RTK signaling",9
+"TPCA-1","","IKK","other",20
+"TG101348","","JAK2","other",20
+"Foretinib","GSK1363089, XL-880","MET","RTK signaling",9
+"Y-39983","","ROCK","cytoskeleton",17
+"YM201636","","PYKfyve(FYV1)","other",20
+"Tivozanib","AV-951","VEGFR","RTK signaling",9
+"GSK690693","","AKT","PI3K signaling",8
+"SNX-2112","","HSP90","other",20
+"QL-XI-92","","DDR1","RTK signaling",9
+"XMD13-2","","RIPK","other",20
+"QL-X-138","","MNK2, DNAPK, MTOR, BTK, JAK3","other",20
+"XMD15-27","","CAMK2B, CLK2, DYRK1A, MAST1, STK39","other",20
+"T0901317","","LXR","other",20
+"EX-527","","SIRT1","other",20
+"THZ-2-49","","CDK9","cell cycle",13
+"KIN001-270","","CDK9","cell cycle",13
+"THZ-2-102-1","","CDK7","cell cycle",13
+"AICAR","N1-(b-D-Ribofuranosyl)-5-aminoimidazole-4-carboxamide","AMPK agonist","metabolism",18
+"Camptothecin","7-Ethyl-10-Hydroxy-Camptothecin,SN-38","TOP1","DNA replication",2
+"Vinblastine","Vinblastine sulphate","Microtubules","cytoskeleton",17
+"Cisplatin","cis-Diammineplatinum(II) dichloride","DNA crosslinker","DNA replication",2
+"Cytarabine","Ara-Cytidine,Arabinosyl Cytosine,U-19920","DNA synthesis","DNA replication",2
+"Docetaxel","RP-56976","Microtubules","cytoskeleton",17
+"Methotrexate","","Dihydrofolate reductase (DHFR)","DNA replication",2
+"ATRA","Tretinoin","Retinoic acid and retinoid X receptor agonist","other",20
+"Gefitinib","ZD-1839","EGFR","EGFR signaling",3
+"Navitoclax","ABT-263","BCL-2, BCL-XL, BCL-W","apoptosis regulation",12
+"Vorinostat","SAHA","HDAC inhibitor Class I, IIa, IIb, IV","chromain  histone acetylation",14
+"Nilotinib","","ABL","ABL signaling",1
+"RDEA119","RDEA119","MEK1, MEK2","ERK MAPK signaling",4
+"CI-1040","PD-18435,PD-184352","MEK1, MEK2","ERK MAPK signaling",4
+"Temsirolimus","CCI-779","mTOR","TOR signaling",10
+"Olaparib","KU0059436, AZD-2281","PARP1, PARP2","Genome integrity",5
+"Veliparib","ABT-888","PARP1, PARP2","Genome integrity",5
+"Bosutinib","SKI-606","SRC, ABL, TEC","ABL signaling",1
+"Lenalidomide","","TNF alpha","other",20
+"Axitinib","AG-013736","PDGFR, KIT, VEGFR","RTK signaling",9
+"AZD7762","AZD 7762","CHEK1, CHEK2","Genome integrity",5
+"GW 441756","","NTRK1","RTK signaling",9
+"CEP-701","CEP-701","FLT3, JAK2, NTRK1, RET","RTK signaling",9
+"SB 216763","SB 216763","GSK3A, GSK3B","WNT signaling",11
+"17-AAG","tanespimycin","HSP90","other",20
+"VX-702","","p38","JNK and p38 signaling",7
+"AMG-706","AMG-706","VEGFR, RET, c-KIT, PDGFR","RTK signaling",9
+"KU-55933","","ATM","Genome integrity",5
+"Elesclomol","","HSP70","other",20
+"Afatinib","BIBW2992, Tovok","ERBB2, EGFR","EGFR signaling",3
+"GDC0449","GDC0449","SMO","other",20
+"PLX4720","","BRAF","ERK MAPK signaling",4
+"BX-795","BX 795","TBK1, PDPK1, IKK, AURKB, AURKC","other",20
+"NU-7441","KU-57788","DNAPK","Genome integrity",5
+"SL 0101-1","","RSK, AURKB, PIM3","ERK MAPK signaling",4
+"BIRB 0796","","Androgen receptor (ANDR)","JNK and p38 signaling",7
+"JNK Inhibitor VIII","JNK Inhibitor VIII","JNK","JNK and p38 signaling",7
+"681640","681640","WEE1, CHEK1","cell cycle",13
+"Nutlin-3a (-)","Nutlin-3a (-)","MDM2","p53 pathway",21
+"PD-173074","PD-173074","FGFR1, FGFR3","RTK signaling",9
+"ZM-447439","ZM447439","AURKB","mitosis",19
+"RO-3306","","CDK1","cell cycle",13
+"MK-2206","","AKT1, AKT2","PI3K signaling",8
+"PD-0332991","Palbociclib Isethionate","CDK4, CDK6","cell cycle",13
+"BEZ235","NVP-BEZ235","PI3K (class 1), mTORC1/2","PI3K signaling",8
+"GDC0941","","PI3K (class 1)","PI3K signaling",8
+"AZD8055","AZD8055","mTORC1/2","TOR signaling",10
+"PD-0325901","PD-0325901","MEK1, MEK2","ERK MAPK signaling",4
+"SB590885","","BRAF","ERK MAPK signaling",4
+"selumetinib","","MEK1, MEK2","ERK MAPK signaling",4
+"AZD6482_2","WO2009093972","PI3K beta (P3C2B)","PI3K signaling",8
+"CCT007093","","PPM1D","other",20
+"EHT 1864","","Rac GTPases","cytoskeleton",17
+"BMS-708163_2","Avagacestat","gamma-secretase","other",20
+"BMS-536924_2","BMS-536924","IGF1R","IGFR signaling",6
+"Cetuximab","Erbitux","EGFR","EGFR signaling",3
+"PF-4708671","","p70 S6KA","TOR signaling",10
+"JNJ-26854165","","MDM2","p53 pathway",21
+"HG-5-113-01","","LOK, LTK, TRCB, ABL(T315I)","ABL signaling",1
+"HG-5-88-01","","EGFR, ADCK4","EGFR signaling",3
+"TW 37","","BCL-2, BCL-XL","apoptosis regulation",12
+"XMD11-85h","","BRSK2, FLT4, MARK4, PRKCD, RET, SPRK1","other",20
+"ZG-10","","IRAK1","other",20
+"XMD8-92","","ERK5","other",20
+"QL-VIII-58","","mTOR, ATR","TOR signaling",10
+"CCT018159","","HSP90","other",20
+"AG-014699","PF-01367338","PARP1, PARP2","Genome integrity",5
+"GSK269962A_2","KIN001-155","ROCK1,ROCK2","cytoskeleton",17
+"SB 505124","2-(5-Benzo[1,3]dioxol-5-yl-2-tert-butyl-3H-imidazol-4-yl)-6-methylpyridine hydrochloride hydrate","TGFbetaR-I (ALK5)","other",20
+"Tamoxifen","","ER","other",20
+"QL-XII-61","","BMX, BTK","other",20
+"JQ1_2","","BRD2, BRD3, BRD4","chromatin  other",16
+"PFI-1","","BRD2, BRD3, BRD4","chromatin  other",16
+"IOX2","","EGLN1","other",20
+"UNC0638_2","","G9a(EHMT2), GLP(EHMT1)","chromatin  histone methylation",15
+"YK 4-279","","RNA helicase A","other",20
+"CHIR-99021_2","CT 99021","GSK3B","WNT signaling",11
+"(5Z)-7-Oxozeaenol","","TAK1 (MAP3K7)","other",20
+"piperlongumine","","Increases ROS levels","other",20
+"FK866","APO866","NAMPT inhibitor","metabolism",18
+"Talazoparib","BMN-673","PARP1, PARP2","Genome integrity",5
+"rTRAIL","","DR4, DR5","apoptosis regulation",12
+"UNC1215","","L3MBTL3","other",20
+"SGC0946","","DOT1L (Q8TEK3)","chromatin  histone methylation",15
+"XAV939","NVP-XAV939","TNKS1, TNKS2","WNT signaling",11
+"PLX4720_2","","BRAF","ERK MAPK signaling",4
+"Trametinib","GSK1120212","MEK1, MEK2","ERK MAPK signaling",4
+"Dabrafenib","GSK2118436","BRAF","ERK MAPK signaling",4
+"Temozolomide","Temodar","DNA akylating agent","DNA replication",2
+"Afatinib_2","","ERBB2, EGFR","EGFR signaling",3
+"Bleomycin (50 uM)","","DNA damage","DNA replication",2
+"SN-38","7-ethyl-10-hydroxy-camptothecin","TOP1","DNA replication",2
+"Olaparib_2","KU0059436, AZD2281","PARP1, PARP2","Genome integrity",5
+"selumetinib_2","","MEK1, MEK2","ERK MAPK signaling",4
+"Bicalutamide_2","ICI-176334","Androgen receptor (ANDR)","other",20
+"RDEA119_2","","MEK1, MEK2","ERK MAPK signaling",4
+"GDC0941_2","","PI3K","PI3K signaling",8
+"MLN4924","","NEDD8-activating enzyme (NAE)","other",20
